@@ -15,7 +15,7 @@ export const getAliveCharacters = async (req, res) => {
 
     console.log('Personajes vivos:', aliveCharacters.map(c => c.name));
 
-    res.status(204).send();
+    res.json({ results: aliveCharacters });
   } catch (error) {
     console.error('Error al obtener personajes:', error.message);
     res.status(500).json({ error: 'Ocurrió un error al procesar la solicitud' });
