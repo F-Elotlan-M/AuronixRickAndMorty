@@ -1,20 +1,10 @@
-import { fetchCharacters } from '../services/RickAndMortyService.js';
+import { getAliveCharactersFormatted } from '../services/CharacterService.js';
 
 export const getAliveCharacters = async (req, res) => {
   try {
-    const characters = await fetchCharacters();
-
-    const aliveCharacters = characters
-      .filter(char => char.status === 'Alive')
-      .map(char => ({
-        id: char.id,
-        name: char.name.replace(/ /g, '_'),
-        status: char.status,
-        gender: char.gender
-      }));
+    const aliveCharacters = await getAliveCharactersFormatted();
 
     console.log('Personajes vivos:', aliveCharacters.map(c => c.name));
-
     res.json({ results: aliveCharacters });
   } catch (error) {
     console.error('Error al obtener personajes:', error.message);

@@ -12,6 +12,7 @@
   "author": "Fernando Elotlan",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "node-fetch": "^3.3.2"
   }
