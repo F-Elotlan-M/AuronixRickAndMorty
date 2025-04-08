@@ -21,7 +21,7 @@ Este proyecto es una API REST creada con Express.js que consume datos desde la [
 - **Supertest** – Librería para testear endpoints HTTP.
 - **ESModules** – Uso de `import`/`export` en lugar de `require`.
 
-## ✅ Pruebas
+## Pruebas
 
 Las pruebas están escritas con **Jest** y **Supertest**, cubriendo:
 
