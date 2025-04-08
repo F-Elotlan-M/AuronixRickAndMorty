@@ -1,5 +1,4 @@
 //usada solo para una página, considerar la paginación de la API
-import fetch from 'node-fetch';
 
 const API_URL = 'https://rickandmortyapi.com/api/character';
 
