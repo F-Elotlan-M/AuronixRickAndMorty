@@ -20,8 +20,7 @@ export async function getAliveCharactersByPageFormatted(pageNumber, limit = 20) 
 
   const aliveCharacters = results.filter(character => character.status === 'Alive');
 
-  // Aplicamos el límite de resultados a los personajes vivos
-  const paginatedAliveCharacters = aliveCharacters.slice(0, limit); // Aquí se limita la cantidad de personajes
+  const paginatedAliveCharacters = aliveCharacters.slice(0, limit); 
 
   return paginatedAliveCharacters.map(character => new CharacterDTO({
     id: character.id,

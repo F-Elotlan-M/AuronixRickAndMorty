@@ -5,7 +5,7 @@ export async function fetchAllCharacters() {
   let url = BASE_URL;
 
   while (url) {
-    const response = await fetch(url); // Cambia de node-fetch a fetch nativo, usado por error de versiones
+    const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Error al obtener datos: ${response.status}`);
     }

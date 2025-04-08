@@ -17,7 +17,6 @@ describe('GET /characters', () => {
     expect(response.body.error).toBe('Not Found');
   });
 
-  //Todos los personajes tienen status "Alive"
   it('should only return characters with status "Alive"', async () => {
     const response = await request(app).get('/characters/alive');
     expect(response.status).toBe(200);
@@ -27,7 +26,6 @@ describe('GET /characters', () => {
     expect(allAreAlive).toBe(true);
   });
 
-  //Los nombres no tienen espacios solo guiones bajos
   it('should return character names with underscores instead of spaces', async () => {
     const response = await request(app).get('/characters/alive');
     expect(response.status).toBe(200);
@@ -37,7 +35,6 @@ describe('GET /characters', () => {
     expect(allNamesHaveUnderscores).toBe(true);
   });
 
-  //Cada personaje tiene propiedades clave
   it('should return characters with id, name, and status properties', async () => {
     const response = await request(app).get('/characters/alive');
     expect(response.status).toBe(200);
@@ -58,10 +55,9 @@ describe('GET /characters/alive/paged?page={n}', () => {
   
     expect(response.status).toBe(200);
     expect(Array.isArray(response.body.results)).toBe(true);
-    const limit = 20; // Si en algún momento se cambia a 30, solo actualizas esta línea
-    expect(response.body.results.length).toBeLessThanOrEqual(limit); // Validamos que no exceda el límite
-  
-    // Verifica que los personajes sean "vivos"
+    const limit = 20; 
+    expect(response.body.results.length).toBeLessThanOrEqual(limit); 
+
     response.body.results.forEach(character => {
       expect(character.status).toBe('Alive');
     });
@@ -72,7 +68,7 @@ describe('GET /characters/alive/paged?page={n}', () => {
   
     expect(response.status).toBe(200);
     expect(Array.isArray(response.body.results)).toBe(true);
-    const limit = 20; // Aquí también puedes actualizar el límite si cambia en el futuro
+    const limit = 20; 
     expect(response.body.results.length).toBeLessThanOrEqual(limit);
   
     response.body.results.forEach(character => {
@@ -98,9 +94,7 @@ describe('GET /characters/alive/paged?page={n}', () => {
   test('should return 400 if page is missing', async () => {
     const response = await request(app).get('/characters/alive/paged');
 
-    // En tu implementación actual, si no se pasa ?page=, puede ir al otro endpoint sin paginación
-    // Así que este test puede variar dependiendo de cómo quieras manejar eso
-    expect(response.status).toBe(400); // O 400 si cambias la lógica
+    expect(response.status).toBe(400);
   });
 
   test('should return 500 with error message if page is too high', async () => {
