@@ -15,12 +15,15 @@ export async function getAliveCharactersFormatted() {
     }));
 }
 
-export async function getAliveCharactersByPageFormatted(pageNumber) {
+export async function getAliveCharactersByPageFormatted(pageNumber, limit = 20) {
   const { results } = await fetchAllCharactersByPage(pageNumber);
 
   const aliveCharacters = results.filter(character => character.status === 'Alive');
 
-  return aliveCharacters.map(character => new CharacterDTO({
+  // Aplicamos el límite de resultados a los personajes vivos
+  const paginatedAliveCharacters = aliveCharacters.slice(0, limit); // Aquí se limita la cantidad de personajes
+
+  return paginatedAliveCharacters.map(character => new CharacterDTO({
     id: character.id,
     name: replaceSpacesWithUnderscores(character.name),
     status: character.status,
