@@ -16,13 +16,10 @@ export async function getAliveCharactersFormatted() {
 }
 
 export async function getAliveCharactersByPageFormatted(pageNumber) {
-  // Trae los personajes vivos de la página solicitada, ya filtrados por página
   const { results } = await fetchAllCharactersByPage(pageNumber);
 
-  // Filtra solo los personajes vivos
   const aliveCharacters = results.filter(character => character.status === 'Alive');
 
-  // Devuelve los personajes vivos formateados
   return aliveCharacters.map(character => new CharacterDTO({
     id: character.id,
     name: replaceSpacesWithUnderscores(character.name),
