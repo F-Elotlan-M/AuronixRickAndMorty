@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 const BASE_URL = 'https://rickandmortyapi.com/api/character';
 
 export async function fetchAllCharacters() {
@@ -7,7 +5,7 @@ export async function fetchAllCharacters() {
   let url = BASE_URL;
 
   while (url) {
-    const response = await fetch(url);
+    const response = await fetch(url); // Cambia de node-fetch a fetch nativo, usado por error de versiones
     if (!response.ok) {
       throw new Error(`Error al obtener datos: ${response.status}`);
     }
@@ -18,4 +16,18 @@ export async function fetchAllCharacters() {
   }
 
   return characters;
+}
+
+export async function fetchAllCharactersByPage(pageNumber) {
+  const url = `${BASE_URL}?page=${pageNumber}`;
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`Error al obtener datos: ${response.status}`);
+  }
+
+  const data = await response.json();
+
+  return data;
 }
