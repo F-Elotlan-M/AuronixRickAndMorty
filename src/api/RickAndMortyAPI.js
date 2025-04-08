@@ -19,7 +19,6 @@ export async function fetchAllCharacters() {
 }
 
 export async function fetchAllCharactersByPage(pageNumber) {
-  // Construye la URL para la página solicitada
   const url = `${BASE_URL}?page=${pageNumber}`;
 
   const response = await fetch(url);
@@ -30,5 +29,5 @@ export async function fetchAllCharactersByPage(pageNumber) {
 
   const data = await response.json();
 
-  return data;  // Devuelve los resultados y la info para la siguiente página (si existe)
+  return data;
 }
